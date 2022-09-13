@@ -1,0 +1,136 @@
+a {
+    text-decoration-line: none;
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+}
+.MV3Tnb:hover{
+  text-decoration: underline black;
+}
+.image{
+  height: 25px;
+}
+
+.right:hover{
+  text-align: right;
+  text-decoration: underline black;
+}
+.right{
+  margin-right: 10px;
+}
+.end{
+  display: flex;
+  justify-content: end;
+}
+.login{
+  margin-left: 10px;
+  border-radius: 5px;
+  border-color: #1a73e8;
+  width: 70px;
+  height: 40px;
+  background-color: #1a73e8;
+  color: #e5e7ea;
+}
+
+a:link {
+    color : black;
+  }
+  a:visited {
+    color : black;
+  }
+  a:hover {
+    color : black;
+  }
+  a:active {
+    color : black;
+  }
+  .middle{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .search {
+    
+    position: relative;
+    width: 500px;
+    text-align: center;
+}
+
+.center{
+  
+  display: flex;
+  justify-content: center;
+}
+  
+  input {
+    
+    width: 400px;
+    border: 2px solid #e5e7ea;
+    border-radius: 30px;
+    height: 30px;
+    font-size: 15px;
+    outline: 0;
+    
+   
+  }
+
+h1
+{
+    text-align: center;
+    margin-top: 120px;
+    font-size: 80px;
+
+}
+h1 span:nth-child(1) {
+    color: #4285f4;
+  }
+  h1 span:nth-child(2) {
+    color: #ea4335;
+  }
+  h1 span:nth-child(3) {
+    color: #fbbc05;
+  }
+  h1 span:nth-child(4) {
+    color: #4285f4;
+  }
+  h1 span:nth-child(5) {
+    color: #34a853;
+  }
+  h1 span:nth-child(6) {
+    color: #ea4335;
+  }
+
+
+  
+  .button{
+    text-align: center;
+
+  }
+
+.sectionthree{
+  border-radius: 5px;
+  border-color: white;
+  height: 40px;
+  background-color: #f8f9fa;
+}
+ 
+.중앙{
+  display: flex;
+  justify-content: center;
+}
+.youtube{
+  width: 50px;
+  
+}
+
+
+
+
+
+ 
+
+
+
+    
