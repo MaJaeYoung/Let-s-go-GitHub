@@ -1,4 +1,4 @@
-
+// #define _CRT_SECURE_NO_WARNINGS
 
 
 //for (int i = 1; i <= 2 * n; i++)    //시간복잡도 4n 빅오표기법 O(n)
@@ -380,3 +380,6 @@
 //	
 //	return 0;
 //}
+
+
+
