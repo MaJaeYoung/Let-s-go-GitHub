@@ -1,4 +1,3 @@
-// #define _CRT_SECURE_NO_WARNINGS
 
 
 //for (int i = 1; i <= 2 * n; i++)    //시간복잡도 4n 빅오표기법 O(n)
@@ -343,29 +342,28 @@
 
 
 
-
-
-//버블
+//버블 정렬 알고리즘
 //#include<stdio.h>
 //#include<stdlib.h>
 //#define MAX_SIZE 10
-//int n = 10;
-//int arr[MAX_SIZE];
 //
-//void Bubble_sort() {
-//	int tmp;
-//	for (int i = 1; i < n-1; i++) {
-//		for (int j = 0; j < n - 1; j++) {
+//int arr[MAX_SIZE];
+//int n = 10;
+//
+//void Bubble_sort(){
+//	int temp;
+//	for (int i = n-1; i >= 1; i--) {				//  === for (int i = 9; i > 0; i--) 
+//		for (int j = 0; j <= i - 1; j++) {			// === for (int j = 0; j < i ; j++) 
 //			if (arr[j] > arr[j + 1]) {
-//				tmp = arr[j];
+//				temp = arr[j];
 //				arr[j] = arr[j + 1];
-//				arr[j + 1] = tmp;
+//				arr[j + 1] = temp;
 //			}
 //		}
 //	}
 //}
 //
-//int main() {
+//int main(){
 //	srand(time(NULL));
 //	int n = MAX_SIZE;
 //	for (int i = 0; i < n; i++) {
@@ -374,12 +372,11 @@
 //
 //	Bubble_sort();
 //
+//	//정렬된 배열 출력
 //	for (int i = 0; i < 10; i++) {
 //		printf("%d ", arr[i]);
 //	}
-//	
 //	return 0;
 //}
-
 
 
