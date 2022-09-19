@@ -7,13 +7,13 @@ const TODOS_KEY = "todos";
 let toDOs = [];
 
 function saveToDos() {
-    localStorage.setItem("todos", JSON.stringify(toDOs));
+    localStorage.setItem(TODOS_KEY, JSON.stringify(toDOs));
 }
 
 function deleteToDo(event){
     const li = event.target.parentElement;
     li.remove();
-    toDos = toDOs.filter((toDo) => toDo.id !== parseInt(li.id));
+    toDOs = toDOs.filter((toDo) => toDo.id !== parseInt(li.id));
     saveToDos();
 }
 
@@ -45,10 +45,6 @@ function handleToDoSubmit(event){
 
 toDOForm.addEventListener("submit", handleToDoSubmit);
 
-// function sayHello(item){
-//     console.log("this is the turn of", item);
-// }  alxdp => 되어있는 곳이랑 같은 것
-
 const savedToDos = localStorage.getItem(TODOS_KEY);
 
 if(savedToDos !== null){
@@ -56,8 +52,3 @@ if(savedToDos !== null){
     toDOs = parsedToDos;
     parsedToDos.forEach(paintTODo);
 }
-
-//(item) => console.log("this is the turn of", item)
-
-
-//7.8다시
