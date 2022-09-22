@@ -265,73 +265,125 @@
 
 
 
+//#include <iostream>                  //수평수평수평수평수평수평수평수평
+//using namespace std;
+//
+//class Complex {
+//	double real;
+//	double imag;
+//public:
+//	Complex();
+//	Complex(double real, double imag);
+//	void showme();
+//	Complex operator + (Complex& c);
+//	Complex operator - (Complex& c);
+//	Complex operator * (Complex& c);
+//	Complex operator * (double d);
+//	Complex operator / (Complex& c);
+//};
+//
+//Complex Complex::operator + (Complex& c) {
+//	return Complex(real + c.real, imag + c.imag);
+//}
+//
+//Complex Complex::operator - (Complex& c) {
+//	return Complex(real - c.real, imag - c.imag);
+//}
+//
+//Complex Complex::operator * (Complex& c) {
+//	return Complex(real * c.real - imag * c.imag, real * c.imag + imag * c.real);
+//}
+//
+//Complex Complex::operator * (double d) {
+//	return Complex(real * d, imag * d);
+//}
+//
+//Complex Complex::operator / (Complex& c) {
+//	Complex conju(c.real, -c.imag);
+//	double d = 1 / (c.real * c.real + c.imag * c.imag);
+//
+//	Complex tmp(real, imag);
+//	tmp = tmp.operator * (conju);
+//
+//	return tmp.operator * (d);
+//}
+//
+//Complex::Complex() {
+//	real = imag = 0.;
+//}
+//
+//Complex::Complex(double re, double im) {
+//	real = re;
+//	imag = im;
+//}
+//
+//
+//void Complex::showme() {
+//	cout << "(" << real << ", " << imag << "i) \n";
+//}
+//
+//int main() {
+//	Complex result;
+//	Complex c1(2, 3);
+//	Complex c2(3, -2);
+//
+//	result.showme();
+//	c1.showme();
+//	c2.showme();
+//	result = c1 + c2;	result.showme();
+//	result = c1 - c2;	result.showme();
+//	result = c1 * c2;	result.showme();
+//	result = c1 / c2;	result.showme();
+//}
+
+
+// 퀵정렬 c++ 
 #include <iostream>
 using namespace std;
 
-class Complex {
-	double real;
-	double imag;
-public:
-	Complex();
-	Complex(double real, double imag);
-	void showme();
-	Complex operator + (Complex& c);
-	Complex operator - (Complex& c);
-	Complex operator * (Complex& c);
-	Complex operator * (double d);
-	Complex operator / (Complex& c);
-};
+int arr1[] = { 6,2,9,3,8,4,5,1,12,15,27,14,9999999 };
 
-Complex Complex::operator + (Complex& c) {
-	return Complex(real + c.real, imag + c.imag);
+void printout(int* p, int num) {
+	for (int a = 0; a < num; a++) {
+		printf("%4d", p[a]);
+	}
+	cout << endl;
 }
 
-Complex Complex::operator - (Complex& c) {
-	return Complex(real - c.real, imag - c.imag);
+void swap(int high, int low) {
+	int tmp = arr1[high];
+	arr1[high] = arr1[low];
+	arr1[low] = tmp;
 }
 
-Complex Complex::operator * (Complex& c) {
-	return Complex(real * c.real - imag * c.imag, real * c.imag + imag * c.real);
+void Quick(int* arr, int  si, int gg) {
+	int pivot = arr[si];
+	int high, low;
+
+	high = si;		// 나보다 큰것 위치
+	low = gg;	    // 나보다 작은것 위치
+
+	if (high < low) {
+		while(high < low) {
+		while (arr[high] <= pivot)	high++;
+		while (arr[low] > pivot)	low--;
+
+		if (high < low) swap(high, low);
+		else { swap(si, low); break; }
+
+	}
+	//cout << arr[high] << "   " << arr[low] << endl;
+	Quick(arr, si, low-1);
+	Quick(arr, low + 1, gg);
+
+	}
 }
-
-Complex Complex::operator * (double d) {
-	return Complex(real * d, imag * d);
-}
-
-Complex Complex::operator / (Complex& c) {
-	Complex conju(c.real, -c.imag);
-	double d = 1 / (c.real * c.real + c.imag * c.imag);
-
-	Complex tmp(real, imag);
-	tmp = tmp.operator * (conju);
-
-	return tmp.operator * (d);
-}
-
-Complex::Complex() {
-	real = imag = 0.;
-}
-
-Complex::Complex(double re, double im) {
-	real = re;
-	imag = im;
-}
-
-
-void Complex::showme() {
-	cout << "(" << real << ", " << imag << "i) \n";
-}
+	
 
 int main() {
-	Complex result;
-	Complex c1(2, 3);
-	Complex c2(3, -2);
+	int SZ = sizeof(arr1) / sizeof(int);
+	printout(arr1, SZ-1);       //Before Sorting
+	Quick(arr1, 0, SZ-1);		//Quick Sorting
+	printout(arr1, SZ-1);		//After Sorting
 
-	result.showme();
-	c1.showme();
-	c2.showme();
-	result = c1 + c2;	result.showme();
-	result = c1 - c2;	result.showme();
-	result = c1 * c2;	result.showme();
-	result = c1 / c2;	result.showme();
 }
