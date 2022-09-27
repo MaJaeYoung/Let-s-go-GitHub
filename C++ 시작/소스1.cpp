@@ -338,52 +338,152 @@
 
 
 // 퀵정렬 c++ 
-#include <iostream>
-using namespace std;
+//#include <iostream>
+//using namespace std;
+//
+//int arr1[] = { 6,2,9,3,8,4,5,1,12,15,27,14,9999999 };
+//
+//void printout(int* p, int num) {
+//	for (int a = 0; a < num; a++) {
+//		printf("%4d", p[a]);
+//	}
+//	cout << endl;
+//}
+//
+//void swap(int high, int low) {
+//	int tmp = arr1[high];
+//	arr1[high] = arr1[low];
+//	arr1[low] = tmp;
+//}
+//
+//void Quick(int* arr, int  si, int gg) {
+//	int pivot = arr[si];
+//	int high, low;
+//
+//	high = si;		// 나보다 큰것 위치
+//	low = gg;	    // 나보다 작은것 위치
+//
+//	if (high < low) {
+//		while(high < low) {
+//		while (arr[high] <= pivot)	high++;
+//		while (arr[low] > pivot)	low--;
+//
+//		if (high < low) swap(high, low);
+//		else { swap(si, low); break; }
+//
+//	}
+//	//cout << arr[high] << "   " << arr[low] << endl;
+//	Quick(arr, si, low-1);
+//	Quick(arr, low + 1, gg);
+//
+//	}
+//}
+//	
+//
+//int main() {
+//	int SZ = sizeof(arr1) / sizeof(int);
+//	printout(arr1, SZ-1);       //Before Sorting
+//	Quick(arr1, 0, SZ-1);		//Quick Sorting
+//	printout(arr1, SZ-1);		//After Sorting
+//
+//}
 
-int arr1[] = { 6,2,9,3,8,4,5,1,12,15,27,14,9999999 };
 
-void printout(int* p, int num) {
-	for (int a = 0; a < num; a++) {
-		printf("%4d", p[a]);
+
+
+// main.cpp
+#include "Heap.h"
+
+int main(void) {
+	element dat[]{ 69,10,30,2,16,8,31,22,6,3,9,5,7,1,9 };
+	int cnt = sizeof(dat) / sizeof(element);
+	HeapType Heap(cnt);
+	Heap.creatHeap();
+
+	printf("\n 입 력 자 료:\t"); p_out(dat, cnt);
+	printf("\n\n Heap Tree:\n");
+	for (int a = 0; a < cnt; a++) {
+		Heap.insertHeap(dat[a]);
+		Heap.printHeap();
+	}
+	printf("\n Delete Heap:\n");
+	for (int a = 1; a <= cnt; a++) {
+		printf("\n Delete Value: %d\n", Heap.deleteHeap());
+		Heap.printHeap();
+	}
+}
+
+
+
+// func.cpp
+#include "Heap.h"
+// Heap 생성자
+HeapType::HeapType(int cnt) {
+	heapSize = 0;
+	heap = (element*)malloc(sizeof(element) * (cnt + 1));
+}
+
+// Heap 초기화
+HeapType* HeapType::creatHeap() {
+	HeapType* h = (HeapType*)malloc(sizeof(HeapType));
+	return h;
+}
+
+// Heap 노드 삽입
+void HeapType::insertHeap(element item) {
+	heapSize++;
+
+	int a = heapSize;
+	while ((a != 1) && (item < heap[a / 2])) {
+		heap[a] = heap[a / 2];
+		a /= 2;
+	}
+	heap[a] = item;
+}
+
+// Heap 노드 삭제
+element HeapType::deleteHeap() {
+	element item = heap[1], tmp = heap[heapSize];
+	heapSize--;
+
+	int parent = 1, child = 2;
+	while (child <= heapSize) {
+		if (child < heapSize && heap[child] > heap[child + 1]) child++;
+		// heapSize보다 작은 child는 꼭 오른쪽 child가 있다.
+
+		if (tmp > heap[child]) {
+			heap[parent] = heap[child];
+			parent = child;
+			child = child * 2;
+		}
+		else break;
+	}
+	heap[parent] = tmp;
+
+	return item;
+}
+// Heap 노드 출력
+void HeapType::printHeap() {
+	double level = 0.; // level이 정수일 때마다 줄을 바꾸어 출력
+
+	for (int a = 1; a <= heapSize; a++) {
+		level = log(a) / log(2);
+		switch ((int)level) {
+		case 0: cout.width(32); cout << heap[a]; break;
+		case 1: cout.width(16); cout << heap[a]; cout.width(16); cout << ' '; break;
+		case 2: cout.width(8); cout << heap[a]; cout.width(8); cout << ' '; break;
+		case 3: cout.width(4); cout << heap[a]; cout.width(4); cout << ' '; break;
+		}
+		level = log(a + 1) / log(2);
+		if ((int)level == level) cout << endl;
+	} if ((int)level != level) cout << endl;
+	cout << "====================================================================\n";
+}
+// 입력 자료 출력
+void p_out(element* p, int cnt) {
+	for (int a = 0; a < cnt; a++) {
+		cout.width(3);
+		cout << *(p + a);
 	}
 	cout << endl;
-}
-
-void swap(int high, int low) {
-	int tmp = arr1[high];
-	arr1[high] = arr1[low];
-	arr1[low] = tmp;
-}
-
-void Quick(int* arr, int  si, int gg) {
-	int pivot = arr[si];
-	int high, low;
-
-	high = si;		// 나보다 큰것 위치
-	low = gg;	    // 나보다 작은것 위치
-
-	if (high < low) {
-		while(high < low) {
-		while (arr[high] <= pivot)	high++;
-		while (arr[low] > pivot)	low--;
-
-		if (high < low) swap(high, low);
-		else { swap(si, low); break; }
-
-	}
-	//cout << arr[high] << "   " << arr[low] << endl;
-	Quick(arr, si, low-1);
-	Quick(arr, low + 1, gg);
-
-	}
-}
-	
-
-int main() {
-	int SZ = sizeof(arr1) / sizeof(int);
-	printout(arr1, SZ-1);       //Before Sorting
-	Quick(arr1, 0, SZ-1);		//Quick Sorting
-	printout(arr1, SZ-1);		//After Sorting
-
 }
