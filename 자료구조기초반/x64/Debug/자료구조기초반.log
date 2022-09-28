@@ -1,3 +1,3 @@
-﻿  자구기초c.cpp
-C:\Users\DSM2022\Desktop\C언어\자료구조기초반\자구기초c.cpp(76,10): warning C4477: 'scanf' : 서식 문자열 '%d'에 'int *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int'입니다.
-C:\Users\DSM2022\Desktop\C언어\자료구조기초반\자구기초c.cpp(74): error C4700: 초기화되지 않은 'n' 지역 변수를 사용했습니다.
+﻿  자구기초.c
+C:\Users\DSM2022\Desktop\C언어\자료구조기초반\자구기초.c(153,12): warning C4013: 'time'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  자료구조기초반.vcxproj -> C:\Users\DSM2022\Desktop\C언어\자료구조기초반\x64\Debug\자료구조기초반.exe
