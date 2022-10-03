@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="소스1.cpp" />
+    <ClCompile Include="수행평가.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="heap.h" />
