@@ -392,108 +392,46 @@
 
 
 //쉘 정렬
-//#include<stdio.h>
-//#include<stdlib.h>
-//#define MAX_SIZE 10
-//
-//int arr[MAX_SIZE];
-//
-//void insertion_sort(int arr[], int first, int last, int gap) {
-//	int i, j, key;
-//	for (i = first + gap; i <= last; i= i+gap ) { /*i는 어떻게 증가해야 할까요 ?*/
-//		key = arr[i];
-//		for (j = i - gap; j >= 0 && arr[j] > key; j = j - gap) {
-//			arr[j+gap] = arr[j];					//원래는 j+1에 j를 넣었지만 지금은 gap만큼 뒤로 밀린 곳에 삽입해야한다.
-//		}
-//		arr[j+gap] = key;						//마찬가지로 j+1에 key를 넣는 것이 아닌 gap만큼 더한 곳에 삽입해야한다.
-//	}
-//}
-//
-//void shell_sort(int arr[], int n) {
-//	int i, gap;
-//	for (gap = n / 2; gap>=1; gap = gap/2)	 /*//간격 정하기 gap 변수 활용*/ {
-//		if (gap % 2 == 0) {
-//				gap++;						//gap이 짝수일 때 1을 더하는 것이 좋은 것으로 분석되었다.
-//		}
-//		for (i = 0; i < gap; i++) {
-//			insertion_sort(arr, i, n-1, gap);
-//		}
-//	}
-//}
-//
-//int main() {
-//	int n = MAX_SIZE;
-//	srand(time(NULL));
-//	for (int i = 0; i < n; i++) {
-//		arr[i] = rand() % 100;
-//	}
-//
-//	shell_sort(arr, n);
-//
-//	for (int i = 0; i < n; i++) {
-//		printf("%d ", arr[i]);
-//	}
-//	return 0;
-//}
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX_SIZE 10
 
+int arr[MAX_SIZE];
 
+void insertion_sort(int arr[], int first, int last, int gap) {
+	int i, j, key;
+	for (i = first + gap; i <= last; i= i+gap ) { /*i는 어떻게 증가해야 할까요 ?*/
+		key = arr[i];
+		for (j = i - gap; j >= 0 && arr[j] > key; j = j - gap) {
+			arr[j+gap] = arr[j];					//원래는 j+1에 j를 넣었지만 지금은 gap만큼 뒤로 밀린 곳에 삽입해야한다.
+		}
+		arr[j+gap] = key;						//마찬가지로 j+1에 key를 넣는 것이 아닌 gap만큼 더한 곳에 삽입해야한다.
+	}
+}
 
-//스택 시작
-//#include<stdio.h>
-//#define MAX_STACK_SIZE 100
-//
-//int stack[MAX_STACK_SIZE];
-//int top = -1;
-//
-////포화상태 확인
-//int is_full() {
-//	if (top == MAX_STACK_SIZE - 1) //스택이 가득 차있는지 검사
-//		return 1;
-//	else 
-//		return 0;
-//}
-//
-////공백상태 확인
-//int is_empty() {
-//	if (top == -1)	// 스택이 비어있는지 검사
-//		return 1;
-//	else 
-//		return 0;
-//}
-//
-//void push(int n) { //스택에 새로운 요소를 삽입, 그 전에 스택이 가득 차지 않았는지 검사	
-//	if (is_full() ) {
-//		printf("stack overflow");
-//	}
-//	else {
-//		++top;
-//		stack[top] = n;
-//	}
-//}
-//
-//int pop() {// 스택에 하나의 요소를 제거, 그 전에 스택이 비어있는지 검사
-//	if (is_empty() ) {
-//		printf("stack underflow");
-//	}
-//	else {
-//		int tmp = stack[top];
-//		top--;
-//		return tmp;
-//		/*한문장으로 하면
-//		return stack[top--];*/
-//	}
-//}
-//
-//int main() {
-//	push(1);
-//	push(2);
-//	push(3);
-//	printf("%d\n", pop());
-//	printf("%d\n", pop());
-//	printf("%d\n", pop());
-//
-//	return 0;
-//}
+void shell_sort(int arr[], int n) {
+	int i, gap;
+	for (gap = n / 2; gap>=1; gap = gap/2)	 /*//간격 정하기 gap 변수 활용*/ {
+		if (gap % 2 == 0) {
+				gap++;						//gap이 짝수일 때 1을 더하는 것이 좋은 것으로 분석되었다.
+		}
+		for (i = 0; i < gap; i++) {
+			insertion_sort(arr, i, n-1, gap);
+		}
+	}
+}
 
+int main() {
+	int n = MAX_SIZE;
+	srand(time(NULL));
+	for (int i = 0; i < n; i++) {
+		arr[i] = rand() % 100;
+	}
 
+	shell_sort(arr, n);
 
+	for (int i = 0; i < n; i++) {
+		printf("%d ", arr[i]);
+	}
+	return 0;
+}
