@@ -8,25 +8,19 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
 
+//3.2 시작
    const root = document.getElementById("root");
-   let counter = 0;
-   function countUp(){
-      counter = counter+1;
-      render()
-   }
-   function render(){
-      ReactDOM.render(<Container/>, root);
-   }
-
-   function Container() {
+   function App() {
+      const data = React.useState(0);
+      const counter = data[0];
+      const modifier = data[1];
       return (
       <div>
          <h3>Totaal clicks: {counter}</h3>
-         <button onClick={countUp}>Click me</button>
+         <button>Click me</button>
       </div>
       );
    }
-      render();
+   ReactDOM.render(<App/>, root);
 </script>
 </html>
-
