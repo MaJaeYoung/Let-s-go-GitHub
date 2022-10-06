@@ -1,4 +1,8 @@
-
+//#include<stdio.h>
+//int main() {
+//	printf("1");
+//	return 0;
+//}
 
 //for (int i = 1; i <= 2 * n; i++)    //시간복잡도 4n 빅오표기법 O(n)
 //sum = sum + i;
@@ -435,3 +439,5 @@
 //	}
 //	return 0;
 //}
+
+
