@@ -1,8 +1,4 @@
-//#include<stdio.h>
-//int main() {
-//	printf("1");
-//	return 0;
-//}
+
 
 //for (int i = 1; i <= 2 * n; i++)    //시간복잡도 4n 빅오표기법 O(n)
 //sum = sum + i;
@@ -441,3 +437,116 @@
 //}
 
 
+//스택 
+//#include<stdio.h>
+//#define MAX_STACK_SIZE 100
+//
+//int stack[MAX_STACK_SIZE];
+//int top = -1;
+//
+////포화상태 확인
+//int is_full() {
+//    if (top == (MAX_STACK_SIZE - 1)) return 1;
+//    else return 0;	// 스택이 가득 차있는지 검사
+//}
+//
+////공백상태 확인
+//int is_empty() {
+//    if (top == -1) return 1;
+//    else return 0;	// 스택이 비어있는지 검사
+//}
+//
+//void push(int n) {
+//    if (is_full() == 0) {
+//        top += 1;
+//        stack[top] = n;
+//        /*printf("%d\n", stack[top]);*/
+//    }
+//    else printf("stack overflow");
+//	// 스택에 새로운 요소를 삽입, 그 전에 스택이 가득 차지 않았는지 검사
+//}
+//
+//int pop() {
+//    if (is_empty() == 0) {
+//        int n = stack[top];
+//        top -= 1;
+//        return n;
+//    }
+//    else printf("stack underflow");
+//    // 스택에 하나의 요소를 제거, 그 전에 스택이 비어있는지 검사
+//}
+//
+//int main() {
+//    push(1);
+//    push(2);
+//    push(3);
+// 
+//    printf("%d\n", pop());
+//    printf("%d\n", pop());
+//    printf("%d\n", pop());
+//
+//    return 0;
+//}
+
+
+//개선된 배열 스택
+#include<stdio.h>
+#define MAX_STACK_SIZE 100
+struct StackType {
+	int data[MAX_STACK_SIZE];
+	int top;
+};
+
+// 스택 초기화 함수
+void init_stack(struct StackType* p)
+{
+	p->top = -1;
+}
+
+// 공백 상태 검출 함수
+int is_empty(struct StackType* p)
+{
+	return p->top == -1 ? 1 : 0;
+}
+
+// 포화 상태 검출 함수
+int is_full(struct StackType* p)
+{
+	return p->top == MAX_STACK_SIZE - 1 ? 1 : 0;
+}
+
+// 삽입함수
+void push(struct StackType* p, int item)
+{
+	if (is_full(p)) {
+		printf("overflow");
+	}
+	else {
+		p->data[++p->top] = item;
+	}
+}
+
+// 삭제함수
+int pop(struct StackType* p)
+{
+	if (is_empty(p)) {
+		printf("error");
+	}
+	else {
+		return p->data[p->top--];
+	}
+}
+
+int main(void)
+{
+	struct StackType s;  // 스택을 정적으로 생성
+
+	init_stack(&s);   // 함수를 호출할 때 매개변수로 스택의 주소를 전달
+	push(&s, 1);
+	push(&s, 2);
+	push(&s, 3);
+
+	printf("%d\n", pop(&s));
+	printf("%d\n", pop(&s));
+	printf("%d\n", pop(&s));
+}
