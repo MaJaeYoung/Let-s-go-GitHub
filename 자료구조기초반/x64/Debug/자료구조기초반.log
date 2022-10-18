@@ -1,3 +1,2 @@
 ﻿  자구기초.c
-C:\Users\DSM2022\Desktop\C언어\자료구조기초반\자구기초.c(331,2): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\DSM2022\Desktop\C언어\자료구조기초반\자구기초.c(334,3): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  자료구조기초반.vcxproj -> C:\Users\DSM2022\Desktop\C언어\자료구조기초반\x64\Debug\자료구조기초반.exe
