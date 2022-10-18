@@ -551,77 +551,198 @@
 //	printf("%d\n", pop(&s));
 //}
 
-
+//괄호 검사 프로그램
 //#include<stdio.h>
 //#include<stdlib.h>
 //#include<string.h>
 //#define MAX_STACK_SIZE 100
-//struct StackType {
-//	int data[MAX_STACK_SIZE];
+//typedef struct StackType {
+//	char data[MAX_STACK_SIZE];
 //	int top;
-//};
+//}StackType;
+//void init_stack(struct StackType* p)
+//{
+//	p->top = -1;
+//}
+//int is_empty(struct StackType* p)
+//{
+//	if (p->top == -1)
+//		return 1;
+//	else return 0;
 //
-//// 스택 초기화 함수
-//void init_stack(struct StackType* s)
-//{
-//	s->top = -1;
 //}
-//
-//// 공백 상태 검출 함수
-//int is_empty(struct StackType* s)
+//int is_full(struct StackType* p)
 //{
-//	return s->top == -1 ? 1 : 0; // 공백 검출
+//	if (p->top == MAX_STACK_SIZE - 1)
+//		return 1;
+//	else return 0;
 //}
-//// 포화 상태 검출 함수
-//int is_full(struct StackType* s)
+//void push(struct StackType* p, int item)
 //{
-//	return s->top == MAX_STACK_SIZE - 1 ? 1 : 0; // 포화 상태 검출
+//	if (is_full(p))
+//		printf("오버플로우");
+//	else
+//		p->data[++(p->top)] = item;
 //}
-//// 삽입함수
-//void push(struct StackType* s, int item)
+//int pop(struct StackType* p)
 //{
-//	if (is_full(s)) printf("overflow");
-//	else s->data[++s->top] = item;// 삽입함수
+//	if (is_empty(p))
+//		printf("언더플로우");
+//	else
+//		return p->data[(p->top)--];
 //}
-//// 삭제함수
-//int pop(struct StackType* s)
-//{
-//	if (is_empty(s)) printf("underflow");
-//	else return s->data[s->top--];// 삭제함수
-//}
-//
-//int check_matching(char* in)
+//int check_matching(char in[])
 //{
 //	StackType s;
-//    char ch, open_ch;
-//	int i, n = strlen(in);     // n에는 문자열의 길이가 입력됨
-//    init_stack(&s);         // 스택의 초기화
+//	char ch, open_ch;
+//	int i, n = strlen(in);  	// n에는 문자열의 길이가 입력됨
+//	init_stack(&s);			// 스택의 초기화
 //
-//	   for (i = 0; i < n; i++) {
-//	       ch = in[i];      // ch = 다음 문자
-//	       switch (ch) {
-//	       case '(':case'[':case'{':
-//	           push(&s, ch);
-//	           break;
-//	       case ')':case']':case'}':
-//	           if (is_empty(&s)) return 0; // 조건 2 판단
-//	           else {
-//	               open_ch = pop(&s);
-//	               if (!(ch == ')' && open_ch == '(' || ch == '}' && open_ch == '{' || ch == ']' && open_ch == '[')) return 0;
-//	           }
-//	           break;
-//	       }
-//	   }
+//	for (i = 0; i < n; i++) {
+//		ch = in[i];		// ch = 다음 문자
+//		if (ch == '(' || ch == '[' || ch == '{')
+//			push(&s, ch);
+//		else if (ch == ')' || ch == ']' || ch == '}') {
+//			if (is_empty(&s) == 1) {
+//				printf("조건 2 오류\n");
+//				return 0;
+//			}
+//			else {
+//				open_ch = pop(&s);
+//				if (((ch == ')' && open_ch == '(') ||
+//					(ch == ']' && open_ch == '[') ||
+//					(ch == '}' && open_ch == '{')) == 0) {
+//					printf("조건 3 오류\n");
+//					return 0;
+//				}
+//			}
+//		}
+//	}
 //
-//	   if (is_empty(&s)) return 1;  // 스택에 남아있으면 오류, 조건1 판단
-//    else return 0;
+//	if (is_empty(&s) == 0) {   // 스택에 남아있으면 오류, 조건1 판단
+//		printf("조건1 오류\n");
+//		return 0;
+//	}
+//	else return 1;
 //}
 //int main(void)
 //{
-//	char* p = "{ A[(i + 1)] = 0; }";
-//	 if (check_matching(p) == 1)	
-//		 printf("%s 괄호검사성공\n", p);
-//	 else
-//	     printf("%s 괄호검사실패\n", p);
-//	 return 0;
+//	char p[] = "}{ A+[B-C] }";
+//	if (check_matching(p) == 1)
+//		printf("%s 괄호검사성공\n", p);
+//	else
+//		printf("%s 괄호검사실패\n", p);
+//	return 0;
 //}
+
+
+//중위 --> 후위
+#include<stdio.h>
+#include<string.h>
+#define MAX_STACK_SIZE 100
+
+struct stacks {
+    char stack[MAX_STACK_SIZE];
+    int top;
+};
+
+void init_stack(struct stacks* s) {
+    s->top = -1;
+}
+
+char peek(struct stacks* s) {
+    if (is_empty(s)) printf("error");
+    else return s->stack[s->top];
+}
+
+
+//스택과 관련된 함수 모두 작성
+
+// 공백 상태 검출 함수
+int is_empty(struct stacks* st)
+{
+    return st->top == -1 ? 1 : 0; 
+}
+
+// 포화 상태 검출 함수
+int is_full(struct stacks* st)
+{
+    return st->top == MAX_STACK_SIZE - 1 ? 1 : 0; 
+}
+
+// 삽입함수
+void push(struct stacks* st, int item)
+{
+    if (is_full(st)) printf("overflow");
+    else st->stack[++st->top] = item;
+}
+
+// 삭제함수
+int pop(struct stacks* st)
+{
+    if (is_empty(st)) printf("underflow");
+    else return st->stack[st->top--];
+}
+
+
+//연산자 우선순위 결정하는 함수
+int rank(char c) {
+    if (c == '(' || c == ')')
+        return 0;
+    else if (c == '+' || c == '-')
+        return 1;
+    else if (c == '/' || c == '*')
+        return 2;
+    else return -1;
+}
+
+//전위 -> 후위
+void infix_to_postfix(char* s) {
+    struct stacks st;
+        char ch, c;
+        int length = strlen(s);
+        init_stack(&st);
+        for (int i = 0; i < length; i++) {
+            ch = s[i];
+
+            //연산자일때
+            if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+                while (is_empty(&st)==0 && rank(ch) <= rank(peek(&st)) ) {
+                    printf("%c", pop(&st));
+                }
+                push(&st, ch);
+            }
+
+            //왼쪽 괄호일때 (
+            else if (ch == '(') {
+                push(&st, ch);
+            }
+
+            //오른쪽 괄호일때 )
+            else if (ch == ')') {
+                char c = pop(&st);
+                while (c != '(') {
+                    printf("%c", c);
+                    c = pop(&st);
+                }
+            }
+
+            //나머지(피연산자일때)
+            else {
+                printf("%c", ch);
+            }
+        }
+
+    //스택에 남아있는 것들 모두 출력
+        while (is_empty(&st) == 0) {
+            printf("%c", pop(&st));
+        }
+}
+
+int main() {
+    char* s = "(2+3)*4+9";
+    printf("중위표기수식 %s\n", s);
+    printf("후위표기수식 ");
+    infix_to_postfix(s);
+    return 0;
+}
