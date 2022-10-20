@@ -13,18 +13,54 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="헤더 파일\스택파일">
+      <UniqueIdentifier>{74817d72-9b39-4993-9542-67d4f882785a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\스택">
+      <UniqueIdentifier>{4448a92d-5d80-4015-8ea9-bc679c196488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\BST헤더">
+      <UniqueIdentifier>{dcce52d0-82a7-4cb9-a5a5-9a90f851c598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\BST메인">
+      <UniqueIdentifier>{51b7f23d-ae96-439b-b3e4-0f87b389f5b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\일반">
+      <UniqueIdentifier>{d683e6fe-5fb7-4d6f-becf-ef0f5a41fffa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\헤더">
+      <UniqueIdentifier>{6166d9f9-4e67-4ab6-aec4-ce5b188402fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="func.cpp">
+      <Filter>소스 파일\스택</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일\스택</Filter>
+    </ClCompile>
+    <ClCompile Include="bstmain.cpp">
+      <Filter>소스 파일\BST메인</Filter>
+    </ClCompile>
+    <ClCompile Include="소스func.cpp">
+      <Filter>소스 파일\BST메인</Filter>
+    </ClCompile>
     <ClCompile Include="소스1.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\일반</Filter>
     </ClCompile>
     <ClCompile Include="수행평가.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\일반</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="stack.h">
+      <Filter>헤더 파일\스택파일</Filter>
+    </ClInclude>
+    <ClInclude Include="bst.h">
+      <Filter>헤더 파일\BST헤더</Filter>
+    </ClInclude>
     <ClInclude Include="heap.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\헤더</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

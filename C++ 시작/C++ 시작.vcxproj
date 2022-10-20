@@ -139,11 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bstmain.cpp" />
+    <ClCompile Include="func.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="소스1.cpp" />
+    <ClCompile Include="소스func.cpp" />
     <ClCompile Include="수행평가.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bst.h" />
     <ClInclude Include="heap.h" />
+    <ClInclude Include="stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
