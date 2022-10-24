@@ -577,3 +577,121 @@
 
 
 
+//코드업 4681 : 검증수
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main(void) {
+//	int n1, n2, n3, n4, n5, num;
+//	scanf("%d %d %d %d %d", &n1, &n2, &n3, &n4, &n5);
+//	num = n1 * n1 + n2 * n2 + n3 * n3 + n4 * n4 + n5 * n5;
+//	printf("%d", num%10);
+//
+//
+//	return 0;
+//}
+
+
+//코드업 4716 : 지능형 기차2
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main(void) {
+//	int  n1[10], n2[10];
+//	int MAX=-1, count=0;
+//	for (int i = 0; i < 10; i++) {
+//		scanf("%d %d", &n1[i], &n2[i]);
+//		count = count + n2[i] - n1[i];
+//		if (MAX <= count) {
+//			MAX = count;
+//		}
+//	}
+//	printf("\n%d", MAX);
+//
+//	return 0;
+//}
+
+// 코드업 4726   수열          여기ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main(void) {
+//	int n, k;
+//	int arr[100000];
+//	int	count=0;
+//
+//	scanf("%d %d", &n, &k);
+//
+//	int MAX = -100 * k - 1;
+//	for (int i = 0; i < n; i++) {
+//		scanf("%d", &arr[i]);
+//	}
+//	for (int i = 0; i < n-k+1; i++) {
+//		count = 0;
+//		for (int j = i; j < i + k; j++) {
+//			count = count + arr[j];
+//		}
+//		if (MAX < count) {
+//			MAX = count;
+//		}
+//	}
+//
+//	printf("%d", MAX);
+//
+//	return 0;
+//}
+
+// 큐 (배열만)
+//#include <stdio.h>
+//int queue[10];
+//int rear = -1, front = -1;
+//
+//int is_empty() {
+//	if (rear == front) return 1;
+//	else return 0;
+//}
+//
+//int is_full() {
+//	if (rear >= 9) return 1;
+//	else return 0;
+//}
+//
+//int enqueue(int item) {
+//	if (is_full()) {
+//		printf("큐 MAX");
+//		return;
+//	}
+//	else queue[++rear] = item;
+//}
+//
+//int dequeue() {
+//	if (is_empty()) {
+//		printf("큐 NULL");
+//		return -1;
+//	}
+//	else return queue[++front];
+//}
+//
+//
+//int main() {
+//	int item = 0;
+//}
+
+
+
+//코드업 4771
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//
+//int main() {
+//	char arr[50];
+//	int count =0;
+//	scanf("%s", arr);
+//	for (int i = 0; i < 50; i++) {
+//		if (arr[i] == 0) break;
+//		else if (i == 0) count += 10;
+//		else if (arr[i] != arr[i - 1]) count += 10;
+//		else count += 5;
+//	}
+//
+//	printf("%d", count);
+//
+//	return 0;
+//}
