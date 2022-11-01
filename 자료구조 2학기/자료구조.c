@@ -637,112 +637,585 @@
 
 
 //중위 --> 후위
-#include<stdio.h>
-#include<string.h>
-#define MAX_STACK_SIZE 100
+//#include<stdio.h>
+//#include<string.h>
+//#define MAX_STACK_SIZE 100
+//
+//struct stacks {
+//    char stack[MAX_STACK_SIZE];
+//    int top;
+//};
+//
+//void init_stack(struct stacks* s) {
+//    s->top = -1;
+//}
+//
+//char peek(struct stacks* s) {
+//    if (is_empty(s)) printf("error");
+//    else return s->stack[s->top];
+//}
+//
+//
+////스택과 관련된 함수 모두 작성
+//
+//// 공백 상태 검출 함수
+//int is_empty(struct stacks* st)
+//{
+//    return st->top == -1 ? 1 : 0; 
+//}
+//
+//// 포화 상태 검출 함수
+//int is_full(struct stacks* st)
+//{
+//    return st->top == MAX_STACK_SIZE - 1 ? 1 : 0; 
+//}
+//
+//// 삽입함수
+//void push(struct stacks* st, int item)
+//{
+//    if (is_full(st)) printf("overflow");
+//    else st->stack[++st->top] = item;
+//}
+//
+//// 삭제함수
+//int pop(struct stacks* st)
+//{
+//    if (is_empty(st)) printf("underflow");
+//    else return st->stack[st->top--];
+//}
+//
+//
+////연산자 우선순위 결정하는 함수
+//int rank(char c) {
+//    if (c == '(' || c == ')')
+//        return 0;
+//    else if (c == '+' || c == '-')
+//        return 1;
+//    else if (c == '/' || c == '*')
+//        return 2;
+//    else return -1;
+//}
+//
+////전위 -> 후위
+//void infix_to_postfix(char* s) {
+//    struct stacks st;
+//        char ch, c;
+//        int length = strlen(s);
+//        init_stack(&st);
+//        for (int i = 0; i < length; i++) {
+//            ch = s[i];
+//
+//            //연산자일때
+//            if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+//                while (is_empty(&st)==0 && rank(ch) <= rank(peek(&st)) ) {
+//                    printf("%c", pop(&st));
+//                }
+//                push(&st, ch);
+//            }
+//
+//            //왼쪽 괄호일때 (
+//            else if (ch == '(') {
+//                push(&st, ch);
+//            }
+//
+//            //오른쪽 괄호일때 )
+//            else if (ch == ')') {
+//                char c = pop(&st);
+//                while (c != '(') {
+//                    printf("%c", c);
+//                    c = pop(&st);
+//                }
+//            }
+//
+//            //나머지(피연산자일때)
+//            else {
+//                printf("%c", ch);
+//            }
+//        }
+//
+//    //스택에 남아있는 것들 모두 출력
+//        while (is_empty(&st) == 0) {
+//            printf("%c", pop(&st));
+//        }
+//}
+//
+//int main() {
+//    char* s = "(2+3)*4+9";
+//    printf("중위표기수식 %s\n", s);
+//    printf("후위표기수식 ");
+//    infix_to_postfix(s);
+//    return 0;
+//}
 
-struct stacks {
-    char stack[MAX_STACK_SIZE];
-    int top;
-};
 
-void init_stack(struct stacks* s) {
-    s->top = -1;
-}
+//후위 표기 수식의 계산
+//#include<stdio.h>
+//#include<string.h>
+//#define MAX_STACK_SIZE 100
+//
+//// 스택 코드 추가, 스택 구조체에서 배열은 -int-형으로!
+//struct StackType {
+//	int data[MAX_STACK_SIZE];
+//	int top;
+//};
+//
+//// 스택 초기화 함수
+//void init_stack(struct StackType* p)
+//{
+//	p->top = -1;
+//}
+//
+//// 공백 상태 검출 함수
+//int is_empty(struct StackType* p)
+//{
+//	return (p->top == -1);
+//}
+//
+//// 포화 상태 검출 함수
+//int is_full(struct StackType* p)
+//{
+//	return (p->top == (MAX_STACK_SIZE - 1));
+//}
+//
+//// 삽입함수
+//void push(struct StackType* p, int item)
+//{
+//	if (is_full(p)) {
+//		printf("포화상태\n");
+//		return;
+//	}
+//	else p->data[++(p->top)] = item;
+//}
+//
+//// 삭제함수
+//int pop(struct StackType* p)
+//{
+//	if (is_empty(p)) {
+//		printf("공백상태\n");
+//		return 1;
+//	}
+//	else return p->data[(p->top)--];
+//}
+//
+//int peek(struct StackType* p)
+//{
+//	if (is_empty(p)) {
+//		printf("공백상태\n");
+//		return 1;
+//	}
+//	else return p->data[p->top];
+//}
+//
+//
+//int evaluate(char exp[]) {
+//	int op1, op2, value, i = 0;
+//	int length = strlen(exp);
+//	char ch;
+//
+//	struct StackType s;
+//	init_stack(&s);
+//
+//	for (i = 0; i < length; i++) {
+//		ch = exp[i];
+//		// ch가 연산자일 경우 피연산자를 스택에서 pop한 뒤 계산 후 push
+//		if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+//			op2 = pop(&s);
+//			op1 = pop(&s);
+//
+//			switch(ch) {
+//			case '+': push(&s, op1 + op2); break;
+//			case '-': push(&s, op1 - op2); break;
+//			case '*': push(&s, op1 * op2); break;
+//			case '/': push(&s, op1 / op2); break;
+//			}// 연산을 수행한 후 스택에 결과값을 push한다.
+//		}
+//
+//		// ch가 피연산자일 경우
+//		else {
+//			value = ch - '0';
+//			push(&s, value);
+//		}
+//	}
+//	return pop(&s);
+//}
+//
+//int main(void) {
+//	char p[] = "82/3-32*+";    //오류가 난다면 char앞에 const추가
+//	int result;
+//	printf("후위 표기식은 %s\n", p);
+//	result = evaluate(p);
+//	printf("결과값은 %d\n", result);
+//	return 0;
+//}
 
-char peek(struct stacks* s) {
-    if (is_empty(s)) printf("error");
-    else return s->stack[s->top];
-}
 
 
-//스택과 관련된 함수 모두 작성
+// 큐 시작
 
-// 공백 상태 검출 함수
-int is_empty(struct stacks* st)
-{
-    return st->top == -1 ? 1 : 0; 
-}
+// 선형큐
+//#include <stdio.h>
+//#include <stdlib.h>
+//#define MAX_QUEUE_SIZE 5
+//
+//typedef struct queue { 				// 큐 타입
+//	int front;
+//	int rear;
+//	int  data[MAX_QUEUE_SIZE];
+//} QueueType;
+//
+//
+//void init_queue(QueueType* q)
+//{
+//	q->rear = -1;  // 초기화 값은?
+//	q->front = -1; // 초기화 값은?
+//}
+//int is_full(QueueType* q)
+//{
+//	if (q->rear == MAX_QUEUE_SIZE-1) //큐가 꽉차있는 조건은?
+//		return 1;
+//	else
+//		return 0;
+//}
+//int is_empty(QueueType* q)
+//{
+//	if (q->front == q->rear)	//큐가 비어있는 조건은?
+//		return 1;
+//	else
+//		return 0;
+//}
+//void enqueue(QueueType* q, int item)
+//{
+//	if (is_full(q) == 1 ) {     //삽입 전 검사해야 할 함수는? 
+//		printf("큐가 포화상태입니다.");
+//		return;
+//}
+//	return q->data[ ++(q->rear)] = item;  // 큐에 item 삽입하는 명령어는?
+//}
+//
+//int dequeue(QueueType* q)
+//{
+//	if (is_empty(q) ==1 ) {  //삭제 전 검사해야 할 함수는? 
+//		printf("큐가 공백상태입니다.");
+//		return -1;
+//}
+//	return q->data[ ++(q->front) ]; 			// 큐에 있는 값을 삭제하는 명령어는?
+//}
+//void queue_print(QueueType* q) {  // 큐 안에 있는 데이터를 출력하는 함수
+//	for (int i = 0; i < MAX_QUEUE_SIZE; i++) {
+//		if (i <= q->rear && i > q->front)
+//			printf("%d ", q->data[i]);
+//	}
+//	printf("\n");
+//}
+//int main(void)
+//{
+//	int item = 0;
+//	QueueType q;
+//
+//	init_queue(&q);
+//
+//	enqueue(&q, 10);  //10 삽입
+//	queue_print(&q);
+//	enqueue(&q, 20);   //20 삽입
+//	queue_print(&q);
+//	enqueue(&q, 30); //30 삽입
+//	queue_print(&q);
+//
+//	dequeue(&q); // 디큐(큐 안에 있는 값 삭제)
+//	queue_print(&q);
+//
+//	dequeue(&q); // 디큐(큐 안에 있는 값 삭제)
+//	queue_print(&q);
+//
+//	return 0;
+//}
 
-// 포화 상태 검출 함수
-int is_full(struct stacks* st)
-{
-    return st->top == MAX_STACK_SIZE - 1 ? 1 : 0; 
-}
-
-// 삽입함수
-void push(struct stacks* st, int item)
-{
-    if (is_full(st)) printf("overflow");
-    else st->stack[++st->top] = item;
-}
-
-// 삭제함수
-int pop(struct stacks* st)
-{
-    if (is_empty(st)) printf("underflow");
-    else return st->stack[st->top--];
-}
 
 
-//연산자 우선순위 결정하는 함수
-int rank(char c) {
-    if (c == '(' || c == ')')
-        return 0;
-    else if (c == '+' || c == '-')
-        return 1;
-    else if (c == '/' || c == '*')
-        return 2;
-    else return -1;
-}
+// 원형큐
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//#define MAX_QUEUE_SIZE 5
+//typedef struct queue { // 큐 타입
+//	int  data[MAX_QUEUE_SIZE];
+//	int  front, rear;
+//} QueueType;
+//
+//// 초기화 함수
+//void init_queue(QueueType* q)
+//{
+//	q->front = q->rear = 0;
+//}
+//
+//// 공백 상태 검출 함수
+//int is_empty(QueueType* q)
+//{
+//	if (q->front == q->rear)
+//		return 1;
+//	else
+//		return 0;
+//}
+//
+//// 포화 상태 검출 함수
+//int is_full(QueueType* q)
+//{
+//	if ((q->rear + 1) % MAX_QUEUE_SIZE == q->front)
+//		return 1;
+//	else
+//		return 0;
+//}
+//
+//
+//// 삽입 함수
+//void enqueue(QueueType* q, int item)
+//{
+//	if (is_full(q))
+//		printf("큐가 포화상태입니다");
+//	// 원형큐에 item 삽입 명령어는?
+//	q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
+//	q->data[q->rear] = item;
+//}
+//
+//// 삭제 함수
+//int dequeue(QueueType* q)
+//{
+//	if (is_empty(q))
+//		printf("큐가 공백상태입니다");
+//	// 원형큐에 삭제 명령어는?
+//	q->front = (q->front + 1) % MAX_QUEUE_SIZE;
+//	return q->data[q->front];
+//}
+//// 원형큐 출력 함수
+//void queue_print(QueueType* q)
+//{
+//	for (int i = q->front; i != q->rear; ) {
+//		i = (i + 1) % (MAX_QUEUE_SIZE);
+//		printf("%d ", q->data[i]);
+//	}
+//	printf("\n");
+//}
+//int main(void)
+//{
+//	QueueType q;
+//	int num;
+//
+//	init_queue(&q);
+//
+//	enqueue(&q, 10);
+//	queue_print(&q);
+//	enqueue(&q, 20);
+//	queue_print(&q);
+//	enqueue(&q, 30);
+//	queue_print(&q);
+//
+//	dequeue(&q);
+//	queue_print(&q);
+//	dequeue(&q);
+//	queue_print(&q);
+//
+//	return 0;
+//}
 
-//전위 -> 후위
-void infix_to_postfix(char* s) {
-    struct stacks st;
-        char ch, c;
-        int length = strlen(s);
-        init_stack(&st);
-        for (int i = 0; i < length; i++) {
-            ch = s[i];
 
-            //연산자일때
-            if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
-                while (is_empty(&st)==0 && rank(ch) <= rank(peek(&st)) ) {
-                    printf("%c", pop(&st));
-                }
-                push(&st, ch);
-            }
+// 덱큐
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//#define MAX_QUEUE_SIZE 5
+//typedef struct dequeue { // 큐 타입
+//	int  data[MAX_QUEUE_SIZE];
+//	int  front, rear;
+//} DequeType;
+//
+//// 초기화 함수
+//void init_deque(DequeType* q)
+//{
+//	q->front = q->rear = 0;
+//}
+//
+//// 공백 상태 검출 함수
+//int is_empty(DequeType* q)
+//{
+//	if (q->rear == q->front)
+//		return 1;
+//	else
+//		return 0;
+//}
+//
+//// 포화 상태 검출 함수
+//int is_full(DequeType* q)
+//{
+//	if ((q->rear + 1) % MAX_QUEUE_SIZE == q->front)
+//		return 1;
+//	else
+//		return 0;
+//}
+//
+//// 후단 삽입 함수(스택 push)
+//void add_rear(DequeType* q, int item)
+//{
+//	if (is_full(q))
+//		printf("큐가 포화상태입니다");
+//	// 덱에서 item 삽입 명령어는?
+//	q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
+//	q->data[q->rear] = item;
+//}
+//
+//// 후단 삭제 함수(스택 pop)
+//int delete_rear(DequeType* q)
+//{
+//	if (is_empty(q))
+//		printf("큐가 공백상태입니다");
+//	// 덱에서 삭제 명령어는?
+//	int tmp = q->data[q->rear];
+//	/*if (q->rear != 0)
+//		q->rear = q->rear - 1;
+//	else
+//		q->rear = q->rear - 1 + MAX_QUEUE_SIZE;*/
+//
+//	q->rear = (q->rear - 1 + MAX_QUEUE_SIZE) % MAX_QUEUE_SIZE;
+//	return tmp;
+//}
+//
+//// 전단 삭제 함수(스택 pop)
+//int delete_front(DequeType* q)
+//{
+//	if (is_empty(q))
+//		printf("큐가 공백상태입니다");
+//	// 덱에서 삭제 명령어는?
+//	q->front = (q->front + 1) % MAX_QUEUE_SIZE;
+//	return q->data[q->front];
+//}
+//// 전단 삽입 함수(스택 push)
+//void add_front(DequeType* q, int item)
+//{
+//	if (is_full(q))
+//		printf("큐가 포화상태입니다");
+//	// 덱에서 item 삽입 명령어는?
+//	q->data[q->front] = item;
+//	q->front = (q->front -1 + MAX_QUEUE_SIZE) % MAX_QUEUE_SIZE;
+//}
+//// 덱 출력 함수
+//void deque_print(DequeType* q)
+//{
+//	for (int i = q->front; i != q->rear; ) {
+//		i = (i + 1) % (MAX_QUEUE_SIZE);
+//		printf("%d ", q->data[i]);
+//	}
+//	printf("\n");
+//}
+//int main(void)
+//{
+//	DequeType q;
+//	int num;
+//
+//	init_deque(&q);
+//
+//	add_rear(&q, 10);
+//	deque_print(&q);
+//	add_front(&q, 20);
+//	deque_print(&q);
+//	add_rear(&q, 30);
+//	deque_print(&q);
+//
+//	delete_front(&q);
+//	deque_print(&q);
+//	delete_rear(&q);
+//	deque_print(&q);
+//
+//	return 0;
+//}
 
-            //왼쪽 괄호일때 (
-            else if (ch == '(') {
-                push(&st, ch);
-            }
 
-            //오른쪽 괄호일때 )
-            else if (ch == ')') {
-                char c = pop(&st);
-                while (c != '(') {
-                    printf("%c", c);
-                    c = pop(&st);
-                }
-            }
 
-            //나머지(피연산자일때)
-            else {
-                printf("%c", ch);
-            }
-        }
-
-    //스택에 남아있는 것들 모두 출력
-        while (is_empty(&st) == 0) {
-            printf("%c", pop(&st));
-        }
-}
-
-int main() {
-    char* s = "(2+3)*4+9";
-    printf("중위표기수식 %s\n", s);
-    printf("후위표기수식 ");
-    infix_to_postfix(s);
-    return 0;
-}
+//배열로 구현된 리스트 프로그램
+//#include<stdio.h>
+//#define MAX_LIST_SIZE 100 // 리스트의 최대크기
+//
+//typedef struct {
+//	int array[MAX_LIST_SIZE]; // 배열 정의
+//	int size; // 현재 리스트에 저장된 항목들의 개수
+//} ArrayListType;
+//
+//// 리스트 초기화 함수
+//void init(ArrayListType* L)
+//{
+//	L->size = 0;
+//}
+//// 리스트가 비어 있으면 1을 반환
+//// 그렇지 않으면 0을 반환
+//int is_empty(ArrayListType* L)
+//{
+//	return L->size == 0;
+//}
+//// 리스트가 가득 차 있으면 1을 반환
+//// 그렇지 않으면 0을 반환
+//int is_full(ArrayListType* L)
+//{
+//	return L->size == MAX_LIST_SIZE; // 왜 MAX_LIST_SIZE -1이 아닐까?
+//}
+//// 리스트 출력
+//void print_list(ArrayListType* L)
+//{
+//	int i;
+//	// 리스트에 있는 요소 어떻게 출력할까?
+//	for (i = 0; i < (L->size); i++) {
+//		printf("%d->", L->array[i]);
+//	}
+//	printf("\n");
+//}
+//void insert_last(ArrayListType* L, int item)
+//{
+//	if (is_full(L) == 1) {
+//		printf("리스트 오버플로우");
+//	}
+//	// 마지막에 삽입하는 명령어는?
+//	else {
+//		L->array[L->size++] = item;
+//	}
+//}
+//void insert(ArrayListType* L, int pos, int item)
+//{
+//	if (!is_full(L) && (pos >= 0) && (pos <= L->size)) {
+//		// 삽입하는 명령어는?
+//		for (int i = (L->size - 1); i >= pos; i--) {
+//			L->array[i + 1] = L->array[i];
+//		}
+//		L->array[pos] = item;
+//		L->size= L->size+1;
+//	}
+//}
+//int delete(ArrayListType* L, int pos)
+//{
+//	int item;
+//	if (is_empty(L) == 1 && pos < 0 || pos >= L->size) {
+//		printf("오류");
+//		return -1;
+//	}
+//	//삭제하는 명령어는?
+//	item = L->array[pos];
+//	for (int i = pos; i < (L->size - 1); i++) {
+//		L->array[i] = L->array[i + 1];
+//		L->size--;
+//		return item;
+//	}
+//}
+//
+//int main(void)
+//{
+//	ArrayListType list;
+//
+//	init(&list);
+//	insert(&list, 0, 30);	// 0번째 위치에 30 추가
+//	print_list(&list);
+//	insert(&list, 0, 10);	// 0번째 위치에 10 추가
+//	print_list(&list);
+//	insert(&list, 1, 20);	// 1번째 위치에 20 추가
+//	print_list(&list);
+//	insert_last(&list, 40);	// 맨 끝에 40 추가
+//	print_list(&list);
+//	delete(&list, 0);		// 0번째 항목 삭제
+//	print_list(&list);
+//	return 0;
+//}
