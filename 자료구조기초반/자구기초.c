@@ -695,3 +695,145 @@
 //
 //	return 0;
 //}
+
+
+//원형큐
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int c_queue[7] = { 0 };
+//int rear = 0;
+//int front = 0;
+//
+//int is_empty() {
+//	if (rear == front) return 1;
+//	else return 0;
+//}
+//
+//int is_full() {
+//	if ((rear + 1) % 7 == front)
+//		return 1;
+//	else return 0;
+//}
+//
+//void enqueue(int item) {
+//	if (is_full()) printf("포화");
+//	else
+//		rear = (rear + 1) % 7;
+//		c_queue[rear] = item;
+//}
+//
+//int dequeue() {
+//	if (is_empty()) {
+//		printf("공백");
+//		return -1;
+//	}
+//	else
+//		front = (front + 1) % 7;
+//		return c_queue[front];
+//}
+//
+//int main() {
+//	printf("%d\n", is_empty());
+//	printf("%d\n", is_full());
+//}
+
+//======================================================
+
+//코드업 4592 풀기 (아직임)
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//
+//int main() {
+//	int n,x,y, sum1 = 0, sum2;
+//	int num[10000][10000];
+//	int xnum, ynum;
+//	scanf("%d", &n);
+//
+//	for (int i = 0; i < n; i++) {
+//		sum1 += 100;
+//	}
+//
+//	for (int i = 0; i < n; i++) {
+//		scanf("%d", &num[x][y]);
+//		xnum = x;
+//		ynum = y;
+//		if (i > 0) {
+//			for (int j = 0; j < i; j++) {
+//
+//			}
+//		}
+//	}
+//
+//	return 0;
+//}
+ 
+//======================================================
+
+//코드업 4846
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main() {
+//	int n,n1, n2;
+//	int sum=0, add=0;
+//	int a[100];
+//	scanf("%d", &n);
+//	for (int i = 0; i < n; i++) {
+//
+//		scanf("%d %d", &n1, &n2);
+//		int num = n2 / n1;
+//		sum = n2 - n1 * num;
+//		a[i] = sum;
+//	}
+//	for (int i = 0; i < n; i++) {
+//		add = add + a[i];
+//	}
+//
+//	printf("%d", add);
+//
+//	return 0;
+//}
+
+
+//코드업 4891
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main() {
+//	int n,s;
+//	int max=-1, min=1000, sum;
+//	scanf("%d", &n);
+//	for (int i = 0; i < n; i++) {
+//		scanf("%d", &s);
+//		if (max < s) {
+//			max = s;
+//		}
+//		if (min > s) {
+//			min = s;
+//		}
+//	}
+//	sum = max - min;
+//	printf("%d", sum);
+//
+//	return 0;
+//}
+
+//코드업 4816
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main() {
+	int A = 300, B = 60, C = 10;
+	int T, a = 0, b = 0, c = 0;
+	scanf("%d", &T);
+		a = T / A;
+		T = T % A;
+
+		b = T / B;
+		T = T % B;
+
+		c = T / C;
+		T = T / C;
+
+
+	printf("%d %d %d", a,b,c);
+	return 0;
+}
