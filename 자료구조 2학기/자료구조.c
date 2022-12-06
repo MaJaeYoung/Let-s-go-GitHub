@@ -1219,3 +1219,311 @@
 //	print_list(&list);
 //	return 0;
 //}
+
+
+
+//연결리스트 C언어 프로그램 구현하기
+//#include<stdio.h>
+//#include<stdlib.h>
+//
+//typedef struct ListNode { 	// 노드 타입을 구조체로 정의한다.
+//	int data;
+//	struct ListNode* link;
+//} ListNode;
+//
+//ListNode* insert_first(ListNode* head, int value)
+//{
+//	ListNode *p = (ListNode*)malloc(sizeof(ListNode));
+//	p->data = value;
+//	p->link = head;
+//	head = p;
+//		return head;
+//}
+//
+//// 노드 pre 뒤에 새로운 노드 삽입
+//ListNode* insert(ListNode* head, ListNode* pre, int value)
+//{
+//	ListNode* p = (ListNode*)malloc(sizeof(ListNode));
+//	p->data = value;
+//	p->link = pre->link;
+//	pre->link = p;
+//		return head;
+//}
+//
+//ListNode* delete_first(ListNode* head)
+//{
+//	ListNode* removed = head;
+//	if (head == NULL) return NULL;
+//	head = head->link;
+//	free(removed);
+//	return head;
+//}
+//
+//// pre가 가리키는 노드의 다음 노드를 삭제한다. 
+//ListNode* delete(ListNode* head, ListNode* pre)
+//{
+//	ListNode* removed;
+//	
+//}
+//
+//void print_list(ListNode* head)
+//{
+//	for (ListNode* p = head; p != NULL; p = p->link)
+//		printf("%d->", p->data);
+//		printf("NULL \n");
+//}
+//
+//int main() {
+//	ListNode* head = NULL;
+//
+//	for (int i = 5; i >= 1; i--) {
+//		head = insert_first(head, i * 10);
+//		print_list(head);
+//	}
+//
+//	for (int i = 1; i <= 2; i++) {
+//		head = delete_first(head);
+//		print_list(head);
+//	}
+//
+//	return 0;
+//}
+
+//이진 트리 순회
+//#include<stdio.h>
+//#include<stdlib.h>
+//typedef struct TreeNode {
+//	int data;
+//	struct TreeNode* left, * right;
+//} TreeNode;
+////		 15
+////	 4		 20
+//// 	1	 	 16 25
+//TreeNode n1 = { 1, NULL, NULL };
+//TreeNode n2 = { 4, &n1, NULL };
+//TreeNode n3 = { 16, NULL, NULL };
+//TreeNode n4 = { 25, NULL, NULL };
+//TreeNode n5 = { 20, &n3, &n4 };
+//TreeNode n6 = { 15, &n2, &n5 };
+//TreeNode* root = &n6;
+//
+//// 전위 순회
+//void preorder(TreeNode* root) {
+//	if (root != NULL ) {				// 종료 조건
+//		printf("[%d] ", root->data); 	// 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
+//		preorder(root->left);			// 왼쪽서브트리 순회
+//		preorder(root->right);			// 오른쪽서브트리 순회
+//	}
+//}
+//
+//// 중위 순회
+//void inorder(TreeNode* root) {
+//	if (root != NULL) {					// 종료 조건
+//		preorder(root->left);			// 왼쪽서브트리 순회
+//		printf("[%d] ", root->data); 	// 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
+//		preorder(root->right);			// 오른쪽서브트리 순회
+//	}
+//}
+//
+//// 후위 순회
+//void postorder(TreeNode* root) {
+//	if (root != NULL) {					// 종료 조건
+//		preorder(root->left);			// 왼쪽서브트리 순회
+//		preorder(root->right);			// 오른쪽서브트리 순회
+//		printf("[%d] ", root->data); 	// 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
+//	}
+//}
+//
+//int main(void)
+//{
+//	printf("전위 순회 결과=");
+//	preorder(root);
+//	printf("\n");
+//
+//	printf("중위 순회 결과=");
+//	inorder(root);
+//	printf("\n");
+//
+//	printf("후위 순회 결과=");
+//	postorder(root);
+//	printf("\n");
+//
+//	return 0;
+//}
+
+
+//======이진 탐색트리 정의========
+//의사코드 알고리즘
+//search(root, key) :
+//	if root == NULL
+//		then return NULL;
+//if key == root
+//then return root;
+//else if key < root
+//	then return search(root->left, key)
+//else return search(root->right, key)
+// 
+// 
+// 
+// 
+//-재귀함수 C언어 코드
+//#include<stdio.h>
+//#include<stdlib.h>
+//struct Treenode {
+//	int data;
+//	struct Treenode* left, * right;
+//};
+//
+//struct Treenode* search(struct Treenode* node, int key) {
+//	if (node == NULL)							    //1. 반환?
+//		if (key == node->data)					    // 2. 반환?
+//
+//		else if (key < node->data)
+//			return  search(node->left, key);        // 3. 반환?
+//
+//		else
+//			return   search(node->right, key);      // 4. 반환?
+//}
+
+//반복문 C언어 코드
+//#include<stdio.h>
+//#include<stdlib.h>
+//
+//struct Treenode {
+//	int data;
+//	struct Treenode* left, * right;
+//};
+//
+//struct Treenode* search(struct Treenode* node, int key) {
+//	while (node != NULL ) {			//1. 조건문?
+//		if (key == node->data)
+//			return node;			//2. 반환?
+//
+//		else if (key < node->data)
+//			return node->left;		//3. 뭐가 들어갈까요?
+//
+//		else
+//			return node->right;		//4. 뭐가 들어갈까요?
+//	}
+//	return NULL;
+//}
+
+
+//이진탐색트리의 삽입 알고리즘
+//#include<stdio.h>
+//#include<stdlib.h>
+//
+//struct Treenode {
+//	int data;
+//	struct Treenode* left, * right;
+//};
+//
+//struct Treenode* new_node(int key) {
+//	struct Treenode* NewNode = (struct Treenode*)malloc(sizeof(struct Treenode));
+//		NewNode->data = key;		//new노드에 key값 대입
+//		NewNode->left = NULL;		//new의 left와 right를 NULL로
+//		NewNode->right = NULL;
+//	return NewNode;
+//}
+//
+//struct Treenode* insert(struct Treenode* node, int key) {
+//	if (node == NULL) return new_node(key);
+//			
+//	if (node->data > key)
+//		node->left = insert(node->left, key);		//insert함수 호출
+//	else if (node->data < key)
+//		node->right = insert(node->right, key);			//insert함수 호출
+//
+//		return node;
+//}
+//
+//int main() {
+//	struct Treenode* root = NULL;
+//	root = insert(root, 30);
+//	root = insert(root, 20);
+//	root = insert(root, 10);
+//	root = insert(root, 40);
+//	root = insert(root, 60);
+//	root = insert(root, 50);
+//	printf("루트 노드는 %d\n", root->data);
+//	printf("루트의 오른쪽 자식의 오른쪽 자식은 %d\n", root->right->right->data);
+//	return 0;
+//}
+
+
+//이진탐색트리의 삭제 알고리즘
+//#include<stdio.h>
+//#include<stdlib.h>
+//
+//struct Treenode {
+//	int data;
+//	struct Treenode* left, * right;
+//};
+//
+//struct Treenode* new_node(int key) {
+//	struct Treenode* new = (struct Treenode*)malloc(sizeof(struct Treenode));
+//	new->data = key;
+//	new->left = new->right = NULL;
+//	return new;
+//}
+//struct Treenode* insert(struct Treenode* node, int key) {
+//	if (node == NULL) return new_node(key);
+//
+//	if (node->data > key)
+//		node->left = insert(node->left, key);
+//	else if (node->data < key)
+//		node->right = insert(node->right, key);
+//
+//	return node;
+//}
+//struct Treenode* min_value_node(struct Treenode* node)
+//{
+//	struct Treenode* current = node;
+//
+//	while (current != NULL )   // 맨 왼쪽 단말 노드를 찾으러 내려감
+//		 current = current->left;
+//
+//	return current;
+//}
+//struct Treenode* delete(struct Treenode* node, int key)
+//{
+//	if (node == NULL) return node;
+//	if (key < node->data)
+//		node->left = delete(node->left, key);	// delete함수 호출
+//	else if (key > node->data)
+//		node->right = delete(node->right, key);// delete함수 호출
+//	else {
+//		// 첫 번째나 두 번째 경우
+//		if (node->left == NULL) {
+//			struct Treenode* temp = node->right;// 오른쪽 서브 트리 링크를 저장해둔다.
+//			free(node);
+//			return temp;
+//		}
+//		else if (node->right == NULL) {
+//			struct Treenode* temp = node->left;// 왼쪽 서브 트리 링크를 저장해둔다.
+//			free(node);
+//			return temp;
+//		}
+//		// 세 번째 경우
+//			struct Treenode* temp = min_value_node(node->right);
+//			node->data = temp->data;				// 가장 가까운 값(오른쪽 서브트리의 가장 작은 값)을 삭제할 노드의 데이터 필드에 대입한다. 
+//			node->right = delete(node->right, temp->data);	// 가장 가까운 값의 노드를 삭제한다. 
+//			
+//	}
+//	return node;
+//}
+//int main() {
+//	struct Treenode* root = NULL;
+//	root = insert(root, 30);
+//	root = insert(root, 20);
+//	root = insert(root, 10);
+//	root = insert(root, 40);
+//	root = insert(root, 60);
+//	root = insert(root, 50);
+//	root = delete(root, 30);
+//	printf("루트 노드는 %d\n", root->data);
+//	printf("루트의 오른쪽 자식의 왼쪽 자식은 %d\n", root->right->left->data);
+//	return 0;
+//}
+
+
