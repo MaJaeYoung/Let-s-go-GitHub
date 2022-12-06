@@ -817,23 +817,805 @@
 //	return 0;
 //}
 
+
+//배열로 구현된 리스트 
+//#include<stdio.h>
+//#define MAX_LIST_SIZE 100 // 리스트의 최대크기
+//
+//typedef struct {
+//	int array[MAX_LIST_SIZE]; // 배열 정의
+//	int size; // 현재 리스트에 저장된 항목들의 개수
+//} ArrayListType;
+//
+//// 리스트 초기화 함수
+//void init(ArrayListType* L)
+//{
+//	L->size = 0;
+//}
+//// 리스트가 비어 있으면 1을 반환
+//// 그렇지 않으면 0을 반환
+//int is_empty(ArrayListType* L)
+//{
+//	return L->size == 0;
+//}
+//// 리스트가 가득 차 있으면 1을 반환
+//// 그렇지 않으면 0을 반환
+//int is_full(ArrayListType* L)
+//{
+//	return L->size == MAX_LIST_SIZE; // 왜 MAX_LIST_SIZE -1이 아닐까?
+//}
+//// 리스트 출력
+//void print_list(ArrayListType* L)
+//{
+//	int i;
+//	// 리스트에 있는 요소 어떻게 출력할까?
+//	for (i = 0; i < L->size; i++) {
+//		printf("%d->", L->array[i]);
+//	}
+//	printf("\n");
+//}
+//void insert_last(ArrayListType* L, int item)
+//{
+//	if (is_full(L) == 1) {
+//		printf("리스트 오버플로우");
+//	}
+//	else
+//		// 마지막에 삽입하는 명령어는?
+//		L->array[L->size++] = item;
+//}
+//void insert(ArrayListType* L, int pos, int item)
+//{
+//	if (!is_full(L) && (pos >= 0) && (pos <= L->size)) {
+//		// 삽입하는 명령어는?
+//		for (int i = L->size - 1; i >= pos; i--)
+//			L->array[i + 1] = L->array[i];
+//		L->array[pos] = item;
+//		L->size++;
+//	}
+//}
+//int delete(ArrayListType* L, int pos)
+//{
+//	int item;
+//	if (is_empty(L) == 1 || pos < 0 || pos >= L->size) {
+//		printf("오류");
+//		return -1;
+//	}
+//	//삭제하는 명령어는?
+//	item = L->array[pos];
+//	for (int i = pos; i < L->size - 1; i++)
+//		L->array[i] = L->array[i + 1];
+//	L->size--;
+//	return item;
+//}
+//
+//int main(void)
+//{
+//	ArrayListType list;
+//
+//	init(&list);
+//	insert(&list, 0, 30);	// 0번째 위치에 30 추가
+//	print_list(&list);
+//	insert(&list, 0, 10);	// 0번째 위치에 10 추가
+//	print_list(&list);
+//	insert(&list, 1, 20);	// 1번째 위치에 20 추가
+//	print_list(&list);
+//	insert_last(&list, 40);	// 맨 끝에 40 추가
+//	print_list(&list);
+//	delete(&list, 0);		// 0번째 항목 삭제
+//	print_list(&list);
+//	return 0;
+//}
+
+
+//단순 연결리스트
+//#include<stdio.h>
+//#include<stdlib.h>
+//
+//typedef struct Node {
+//	int data;
+//	struct Node* link;
+//}Node;
+//
+//Node* head = NULL;
+//
+//void insert_first(int value) {
+//	Node* NewNode = (Node*)malloc(sizeof(Node));
+//	NewNode->data = value;
+//	NewNode->link = head;
+//	head = NewNode;
+//}
+//
+//void insert(Node*pre, int value) {
+//	Node* NewNode = (Node*)malloc(sizeof(Node));
+//	NewNode->data = value;
+//	NewNode->link = pre->link;
+//	pre->link = NewNode;
+//}
+//
+//int delete_first(Node* del) {
+//	Node* temp = del;
+//	head = del->link;
+//	free(del);
+//	return temp;
+//}
+//
+//int delete(Node* tra, Node* del) {
+//	int temp = del->data;
+//	tra->link = del->link;
+//	free(del);
+//	return temp;
+//}
+//
+//void print_list(Node* list) {
+//	if (list == NULL) {
+//		printf("NOT");
+//	}
+//	for (list = head;  list != NULL; list = list->link) {
+//		printf("%d->", list->data);
+//	}
+//}
+//
+//int main() {
+//	insert_first(1);
+//	insert(head, 2);
+//	insert(head, 3);
+//
+//
+//	print_list(head);
+//}
+
+
+//원형 연결 리스트
+//#include<stdio.h>
+//#include<stdlib.h>
+//
+//typedef struct Node {
+//	int data;
+//	struct Node* link;
+//}Node;
+//
+//Node* head = NULL;
+//
+//void r_insert_first(int item) {
+//	Node* NewNode = (Node*)malloc(sizeof(Node));
+//	NewNode->data = item;
+//	if (!head) {
+//		head = NewNode;
+//		NewNode->link = NewNode;
+//	}
+//	else {
+//		NewNode->link = head->link;
+//		head->link = NewNode;
+//	}
+//}
+//
+//void  r_insert(Node* pre, int item) {
+//	//단순 연결리스트와 동일
+//	Node* NewNode = (Node*)malloc(sizeof(Node));
+//	NewNode->data = item;
+//	if (!head) {
+//		head = NewNode;
+//		NewNode->link = NewNode;
+//	}
+//	else {
+//		NewNode->link = pre->link;
+//		pre->link = NewNode;
+//		head = NewNode;
+//	}
+//
+//}
+
+//단순 연결리스트 복습
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//typedef struct Node {
+//	int data;
+//	struct Node* link;
+//}Node;
+//
+//struct Node* head = NULL;
+//
+//void list_insert_first(int item) {
+//	Node* NewNode = (Node*)malloc(sizeof(Node));
+//	NewNode->data = item;
+//	NewNode->link = head; // 실수 금지
+// 	head = NewNode;
+//}
+//
+//void list_insert(Node* pre, int item) {
+//	Node* NewNode = (Node*)malloc(sizeof(Node));
+//	NewNode->data = item;
+//	NewNode->link = pre->link;
+//	pre->link = NewNode;
+//}
+//
+//int list_delete_first(Node* del) {
+//	Node* removed = del;
+//	int temp = removed->data;
+//	head = removed->link;
+//	free(removed);
+//	return temp;
+//}
+//
+//int list_delete(Node* tra, Node* del) {
+//	Node* removed = del;
+//	int temp = removed->data;
+//	tra->link = del->link;
+//	free(removed);
+//	return temp;
+//}
+//
+//void list_print(Node* list) {
+//	if (!head) {
+//		printf("Nothing!");
+//	}
+//	else {
+//		for (Node* ptr = list; ptr != NULL; ptr= ptr->link) {
+//			printf("%d->", ptr->data);
+//		}
+//	}
+//}
+//
+//int main() {
+//	
+//	list_insert_first(1);
+//	list_insert_first(2);
+//	list_insert(head->link, 3);
+//	
+//	list_delete_first(head); 
+//	list_delete(head, head->link);
+//
+//	printf("%d", head->data);
+//	printf("%d", head->link->data);
+//	printf("%d", head->link->link->data);
+//}
+
+//이중 연결 리스트
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//typedef struct Node {
+//	int data;
+//	struct Node* rlink;
+//	struct Node* llink;
+//}Node;
+//
+//Node* head = NULL;
+//
+//void d_insert(Node* pre, int item) {
+//	Node* NewNode = (Node*)malloc(sizeof(Node));
+//	NewNode->data = item;
+//	NewNode->rlink = pre->rlink;
+//	NewNode->llink = pre;
+//	pre->rlink->llink = NewNode;
+//	pre->rlink = NewNode;
+//
+//}
+//
+//void d_delete(Node* del) {
+//	int temp = del->data;
+//	del->rlink->llink = del->llink;
+//	del->llink->rlink = del->rlink;
+//	free(del);
+//	return temp;
+//}
+//
+//int main() {
+//
+//}
+
+
+//코드업 4036
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main() {
+//	int n, m;
+//	int a, b;
+//	scanf("%d %d", &n, &m);
+//	
+//	a = (n+m) /2;
+//	b = (n-m) /2;
+//
+//	printf("%d\n", a);
+//	printf("%d", b);
+//
+//	return 0;
+//}
+
+
+//코드업 4026
+//#define _CRT_SECURE_NO_WARNINGS
+//#include<stdio.h>
+//#include<stdlib.h>
+//#define MAX_SIZE 5
+//
+//int arr[MAX_SIZE];
+//void Bubble_sort() {
+//	int temp;
+//	for (int i = MAX_SIZE - 1; i >= 1; i--) { // 총 단계는 배열 사이즈-1 수행됨
+//		for (int j = 0; j <= i - 1; j++) { // 뒤에서부터 거품처럼 정렬되는 구조
+//			if (arr[j] > arr[j + 1]) {
+//				temp = arr[j];
+//				arr[j] = arr[j + 1];
+//				arr[j + 1] = temp;
+//			}
+//		}
+//	}
+//}
+//
+//int main() {
+//	srand(time(NULL));
+//	int n = MAX_SIZE;
+//	for (int i = 0; i < n; i++) {
+//		scanf("%d", &arr[i]);
+//	}
+//
+//	Bubble_sort();
+//
+//	printf("%d", arr[MAX_SIZE / 2]);
+//	return 0;
+//}
+
+//이진 트리의 순회
+//#include<stdio.h>
+//#include<stdlib.h>
+//typedef struct TreeNode {
+//	int data;
+//	struct TreeNode* left, * right;
+//} TreeNode;
+////		 15
+////	 4		 20
+//// 	1	 	 16 25
+//TreeNode n1 = { 1, NULL, NULL };
+//TreeNode n2 = { 4, &n1, NULL };
+//TreeNode n3 = { 16, NULL, NULL };
+//TreeNode n4 = { 25, NULL, NULL };
+//TreeNode n5 = { 20, &n3, &n4 };
+//TreeNode n6 = { 15, &n2, &n5 };
+//TreeNode* root = &n6;
+//
+//// 전위 순회
+//void preorder(TreeNode* root) {
+//	 if (root != NULL ) {//or(!root)도 가능	// 종료 조건
+//		 printf("[%d] ",  root->data ); 	// 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
+//		 preorder( root->left );			// 왼쪽서브트리 순회
+//		 preorder( root->right );			// 오른쪽서브트리 순회
+//	}
+//}
+
+//void order(TreeNode* root) {
+//	if (root != NULL) {//or(!root)도 가능	// 종료 조건
+//		preorder( root->left );				// 왼쪽서브트리 순회
+//		printf("[%d] ", root->data );		// 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
+//		preorder( root->right );			// 오른쪽서브트리 순회
+//	}
+//}
+//
+//void order(TreeNode* root) {
+//	if (root != NULL) {//or(!root)도 가능	// 종료 조건
+//		preorder( root->left );				// 왼쪽서브트리 순회
+//		preorder( root->right );			// 오른쪽서브트리 순회
+//		printf("[%d] ", root->data );		// 노드 방문(여기서 방문은 출력하는 것으로 정의하자. 방문은 응용에 따라 의미가 달라질 수 있다.)
+//	}
+//}
+
+//int main(void)
+//{
+//	printf("전위 순회 결과=");
+//	preorder(root);
+//	printf("\n");
+//
+////	printf("중위 순회 결과 = ");
+////	preorder(root);
+////	printf("\n");
+//
+////	printf("후위 순회 결과=");
+////	preorder(root);
+////	printf("\n");
+//	return 0;
+//}
+
+//이진 탐색 트리
+//#include<stdio.h>
+//#include<stdlib.h>
+//struct Treenode {
+//	int data;
+//	struct Treenode* left, * right;
+//};
+//
+//// 순환적인 탐색연산 재귀함수 코드
+//struct Treenode* search(struct Treenode* node, int key) {
+//	if (node == NULL)
+//		return NULL;
+//	if (key == node->data)
+//		return node;
+//	else if (key < node->data)
+//		return search(node->left, key);
+//	else
+//		return search(node->right, key);
+//}
+//
+////반복문
+//struct Treenode* search(struct Treenode* node, int key) {
+//	while (node != NULL) {
+//		if (key == node->data)
+//			return node;
+//		else if (key < node->data)
+//			return node = node->left;
+//		else
+//			return node = node->right;
+//	}
+//	return NULL;
+//}
+
+//이진 탐색 트리 삽입
+//#include<stdio.h>
+//#include<stdlib.h>
+//
+//struct Treenode {
+//	int data;
+//	struct Treenode* left, * right;
+//};
+//
+//struct Treenode* new_node(int key) {
+//	struct Treenode* new = (struct Treenode*)malloc(sizeof(struct Treenode));
+//	new->data = key;				//new노드에 key값 대입
+//	new->left = new->right = NULL;	//new의 left와 right를 NULL로
+//	return new;
+//}
+//
+//struct Treenode* insert(struct Treenode* node, int key) {
+//	if (node == NULL) 
+//		return new_node(key);
+//	if (node->data > key)
+//		node->left = insert(node->left, key);	//insert함수 호출
+//	else if (node->data < key)
+//		node->right = insert(node->right, key);	//insert함수 호출
+//
+//		return node;
+//}
+//
+//int main() {
+//	struct Treenode* root = NULL;
+//	root = insert(root, 30);
+//	root = insert(root, 20);
+//	root = insert(root, 10);
+//	root = insert(root, 40);
+//	root = insert(root, 60);
+//	root = insert(root, 50);
+//	printf("루트 노드는 %d\n", root->data);
+//	printf("루트의 오른쪽 자식의 오른쪽 자식은 %d\n", root->right->right->data);
+//	return 0;
+//}
+
+//이진탐색트리 삭제#include<stdio.h>
+//#include<stdlib.h>
+//
+//struct Treenode {
+//	int data;
+//	struct Treenode* left, * right;
+//};
+//
+//struct Treenode* new_node(int key) {
+//	struct Treenode* new = (struct Treenode*)malloc(sizeof(struct Treenode));
+//	new->data = key;
+//	new->left = new->right = NULL;
+//	return new;
+//}
+//struct Treenode* insert(struct Treenode* node, int key) {
+//	if (node == NULL) return new_node(key);
+//
+//	if (node->data > key)
+//		node->left = insert(node->left, key);
+//	else if (node->data < key)
+//		node->right = insert(node->right, key);
+//
+//	return node;
+//}
+//struct Treenode* min_value_node(struct Treenode* node)
+//{
+//	struct Treenode* current = node;
+//
+//	while (current->left != NULL)   // 맨 왼쪽 단말 노드를 찾으러 내려감
+//		 current = current->left;
+//
+//	return current;
+//}
+//struct Treenode* delete(struct Treenode* node, int key)
+//{
+//	if (node == NULL) return node;
+//	if (key < node->data)
+//		node->left = delete(node->left, key); // delete함수 호출
+//	else if (key > node->data)
+//		node->right = delete(node->right, key); // delete함수 호출
+//	else {
+//		// 첫 번째나 두 번째 경우
+//		if (node->left == NULL) {
+//			struct Treenode* temp = node->right; // 오른쪽 서브 트리 링크를 저장해둔다.
+//				free(node);
+//			return temp;
+//		}
+//		else if (node->right == NULL) {
+//			struct Treenode* temp = node->left; // 왼쪽 서브 트리 링크를 저장해둔다.
+//				free(node);
+//			return temp;
+//		}
+//		// 세 번째 경우
+//		struct Treenode* temp = min_value_node(node->right);
+//		node->data = temp;// 가장 가까운 값(오른쪽 서브트리의 가장 작은 값)을 삭제할 노드의 데이터 필드에 대입한다. 
+//		free(temp);// 가장 가까운 값의 노드를 삭제한다. 
+//	}
+//	return node;
+//}
+//int main() {
+//	struct Treenode* root = NULL;
+//	root = insert(root, 30);
+//	root = insert(root, 20);
+//	root = insert(root, 10);
+//	root = insert(root, 40);
+//	root = insert(root, 60);
+//	root = insert(root, 50);
+//	root = delete(root, 30);
+//	printf("루트 노드는 %d\n", root->data);
+//	printf("루트의 오른쪽 자식의 왼쪽 자식은 %d\n", root->right->left->data);
+//	return 0;
+//}
+
+
+//#include<stdio.h>
+//#include<stdlib.h>
+//struct Treenode {
+//	int data;
+//	struct Treenode* left, * right;
+//};
+//
+//struct Treenode* search(struct Treenode* node, int key) {
+//	if (node == NULL) return NULL;
+//	if (key == node->data) return node;
+//	else if (key < node->data)
+//		return search(node->left, key);
+//	else
+//		return search(node->right, key);
+//}
+//
+//struct Treenode* new_node(int key) {
+//	struct Treenode* new = (struct Treenode*)malloc(sizeof(struct Treenode));
+//	new->data = key; //new노드에 key값 대입
+//	new->right = new->left = NULL; //new의 left와 right를 NULL로
+//	return new;
+//}
+//
+//struct Treenode* insert(struct Treenode* node, int key) {
+//	if (node == NULL) return new_node(key);
+//
+//	if (node->data > key)
+//		node->left = insert(node->left, key);//insert함수 호출
+//	else if (node->data < key)
+//		node->right = insert(node->right, key);//insert함수 호출
+//
+//	return node;
+//}
+//// 이진 탐색 트리와 키가 주어지면 키가 저장된 노드를 삭제하고 
+//// 새로운 루트 노드를 반환한다. 
+//struct Treenode* min_value_node(struct Treenode* node)
+//{
+//	struct Treenode* current = node;
+//
+//	// 맨 왼쪽 단말 노드를 찾으러 내려감
+//	while (current->left != NULL)
+//		current = current->left;
+//
+//	return current;
+//}
+//struct Treenode* delete(struct Treenode* node, int key)
+//{
+//	if (node == NULL) return node;
+//	// 만약 키가 루트보다 작으면 왼쪽 서브 트리에 있는 것임
+//	if (key < node->data)
+//		node->left = delete(node->left, key);// delete함수 호출
+//	// 만약 키가 루트보다 크면 오른쪽 서브 트리에 있는 것임
+//	else if (key > node->data)
+//		node->right = delete(node->left, key); // delete함수 호출
+//	// 키가 루트와 같으면 이 노드를 삭제하면 됨
+//	else {
+//		// 첫 번째나 두 번째 경우
+//		if (node->left == NULL) {
+//			struct Treenode* temp = node->right;
+//			free(node);
+//			return temp;
+//		}
+//		else if (node->right == NULL) {
+//			struct Treenode* temp = node->left;
+//			free(node);
+//			return temp;
+//		}
+//		// 세 번째 경우
+//		struct Treenode* temp = min_value_node(node->right);
+//
+//		// 중외 순회시 후계 노드를 복사한다. 
+//		node->data = temp->data;
+//		// 중외 순회시 후계 노드를 삭제한다. 
+//		node->right = delete(node->right, temp->data);
+//	}
+//	return node;
+//}
+//
+//int main() {
+//	struct Treenode* root = NULL;
+//	root = insert(root, 30);
+//	root = insert(root, 20);
+//	root = insert(root, 10);
+//	root = insert(root, 40);
+//	root = insert(root, 60);
+//	root = insert(root, 50);
+//	root = delete(root, 30);
+//	root = delete(root, 20);
+//
+//	printf("루트 노드는 %d\n", root->data);
+//	printf("루트의 왼쪽 자식은 %d\n", root->left->data);
+//	printf("루트의 오른쪽 자식의 왼쪽 자식은 %d\n", root->right->left->data);
+//	if (search(root, 60) != NULL)
+//		printf("60 탐색 성공");
+//	else
+//		printf("60 탐색 실패");
+//	return 0;
+//}
+
+
+// 코드업 4861
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main() {
+//	int n, k;
+//	int arr[2][6] = { 0 };
+//	int gen, gra, room;
+//	scanf("%d %d", &n, &k);
+//	for (int i = 0; i < n; i++) {
+//		scanf("%d %d", &gen, &gra);
+//	}
+//	for (int i = 0; i < 2; i++) {
+//		for (int j = 0; j < 6; j++) {
+//			if (arr[i][j] > 0) {
+//
+//			}
+//		}
+//	}
+//
+//}
+// 
+// 
+
+
+//코드업 4506
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main() {
+//	int n1,n2, tmp;
+//	int	gcd = 0, lcm = 0;
+//	scanf("%d %d", &n1, &n2);
+//
+//	if (n1 > n2) {
+//		tmp = n2;
+//		n2 = n1;
+//		n1 = tmp;
+//	}
+//	for (int i = 1; i <= n1;i++) {
+//		if (n1 % i == 0 && n2 % i == 0) {
+//			gcd = i;
+//		}
+//	}
+//		lcm = gcd * (n1 / gcd) * (n2 / gcd);
+//		printf("%d %d", gcd, lcm);
+//}
+
+//코드업 4651
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main() {
+//	int num;
+//	int arr[3] = { 0 };
+//	for (int i = 0; i < 3; i++) {
+//		for (int j = 0; j < 4; j++) {
+//			scanf("%d", &num);
+//			arr[i] += num;
+//		}
+//	}
+//
+//	for (int i = 0; i < 3; i++) {
+//		if (arr[i] == 1) printf("C\n");
+//		if (arr[i] == 2) printf("B\n");
+//		if (arr[i] == 3) printf("A\n");
+//		if (arr[i] == 4) printf("E\n");
+//		if (arr[i] == 0) printf("D\n");
+//	}
+//
+//	return 0;
+//}
+
+
+//코드업 4741
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main() {
+//	int hr, min;
+//	int num;
+//	scanf("%d %d", &hr, &min);
+//	scanf("%d", &num);
+//	
+//	min += num;
+//	if (min >= 60) {
+//		while (min >= 60)
+//		{
+//			if (hr >= 23 && min >= 60) {
+//				hr = hr - 23;
+//				min = min - 60;
+//				continue;
+//			}
+//			min = min - 60;
+//			hr = hr + 1;
+//		}
+//	}
+//	printf("%d %d", hr, min);
+//	return 0;
+//}
+
+
+//=========================================================
 //코드업 4816
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-int main() {
-	int A = 300, B = 60, C = 10;
-	int T, a = 0, b = 0, c = 0;
-	scanf("%d", &T);
-		a = T / A;
-		T = T % A;
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main() {
+//	int A = 300, B = 60, C = 10;
+//	int T, a = 0, b = 0, c = 0;
+//	scanf("%d", &T);
+//		a = T / A;
+//		T = T % A;
+//
+//		b = T / B;
+//		T = T % B;
+//
+//		c = T / C;
+//		T = T % C;
+//
+//
+//	printf("%d %d %d", a,b,c);
+//	return 0;
+//}
 
-		b = T / B;
-		T = T % B;
-
-		c = T / C;
-		T = T / C;
-
-
-	printf("%d %d %d", a,b,c);
-	return 0;
-}
+//코드업 4031
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main() {
+//	int arr[7] = { 0 };
+//	int even = -1, odd = -1;
+//	int n1= 0, n2=0;
+//	for (int i = 0; i < 7; i++) {
+//		scanf("%d", &arr[i]);
+//		if (arr[i] % 2 == 0) {
+//			if (arr[i] > even) {
+//				 even = arr[i];
+//				 n1++;
+//			}
+//		}
+//		else {
+//			if (arr[i] > odd) {
+//				 odd = arr[i];
+//				 n2++;
+//			}
+//		}
+//	}
+//
+//	if (n1 == 0) {
+//		printf("%d", odd);
+//	}
+//	else if (n2 == 0) {
+//		printf("%d", even);
+//	}
+//	
+//	else {
+//		printf("%d", even+odd);
+//	}
+//	return 0;
+//}
+//================================================
