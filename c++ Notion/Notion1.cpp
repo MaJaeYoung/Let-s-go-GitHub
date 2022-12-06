@@ -170,4 +170,254 @@
 //}
 
 
+//범위기반 for문
+//#include <iostream>
+//int main()
+//{
+//	int nList[5] = { 10, 20, 30, 40, 50 };
 //
+//	// 전형적인 C 스타일 반복문
+//	for (int i = 0; i < 5; i++)
+//		std::cout << nList[i] << " ";
+//
+//	std::cout << std::endl;
+//
+//	// 범위기반 C++11 스타일 반복문
+//	// 각 요소의 값을 n에 복사한다.
+//	for (auto n : nList)
+//		std::cout << n << " ";
+//
+//	std::cout << std::endl;
+//
+//	// n은 각 요소에 대한 참조다.
+//	for (auto& n : nList)
+//		std::cout << n << " ";
+//
+//	std::cout << std::endl;
+//	return 0;
+//}
+
+//#include <iostream>
+//int main()
+//{
+//	int nData = 10;
+//
+//	// nData 인스턴스에 대한 참조자 선언
+//	int& ref = nData;
+//
+//	// 참조자의 값을 변경하면 원본도 변경된다!
+//	ref = 20;
+//
+//	std::cout << nData << std::endl;
+//
+//	// 포인터를 쓰는 것과 비슷하다.
+//	int* pnData = &nData;
+//	*pnData = 30;
+//	std::cout << nData << std::endl;
+//
+//	return 0;
+//}
+
+//실습예제
+//#include <iostream>
+//using namespace std;
+//
+//class Earning {
+//	int rate;
+//	int hours;
+//public:
+//	Earning();
+//	void Setvalue(int r, int h = 40);
+//	int Imguem();
+//};
+//
+//Earning::Earning() {
+//	rate = 0;
+//	hours = 0;
+//}
+//
+//void Earning::Setvalue(int r, int h = 40) {
+//	rate = r;
+//	hours = h;
+//	if (h == 0)
+//		hours = 40;
+//}
+//
+//int Earning::Imguem() {
+//	return rate * hours;
+//}
+//
+//int main() {
+//	Earning khd,a,b,c;
+//	a.Setvalue(15000, 50);
+//	b.Setvalue(200000, 30);
+//	c.Setvalue(30000);
+//	khd.Setvalue(10000, 0);
+//
+//	cout << khd.Imguem() << endl;
+//	cout << a.Imguem() << endl;
+//	cout << b.Imguem() << endl;
+//	cout << c.Imguem() << endl;
+//}
+
+
+
+//=========================4.(2)까지===========================
+
+//=========================8부터까지===========================
+//#include <iostream>
+//using namespace std;
+//
+//enum{Green = 1, Red, Blue};
+//
+//class Car{
+////private: 
+//	int color;   // 전용
+//	int size;    // 멤버
+//public:
+//	void setvalue(int c, int s);   //공
+//	int getcolor();				  //용
+//	int getsize();				 //멤버
+//	Car();
+//	Car(int s);
+//	Car(int s, int c);
+//};
+//
+//void Car::setvalue(int c, int s) { //객체의 색/크기를 변화
+//	color = c;
+//	size = s; 
+//}
+//
+//int Car::getcolor() {
+//	return color;
+//}
+//int Car::getsize() {
+//	return size;
+//}
+//
+//Car::Car() { color = 0; size = 0;}
+//Car::Car(int s) { color = 0; size = s;}
+//Car::Car(int c, int s) { color = c; size = s;}
+//
+//int main() {
+//	Car c1(Green, 10), c2, c3(30);
+//	c1.setvalue(Red, 10);
+//	c2.setvalue(Blue, 20);
+//
+//	cout << c1.getsize() << endl;
+//	cout << c2.getcolor() << endl;
+//
+//	cout << c3.getsize();
+//}
+
+//#include <iostream>
+//using namespace std;
+//class CTest
+//{
+//	int m_nData; // private으로 선언
+//public:
+//	CTest() : m_nData(0)	// 디폴트 생성자
+//	{
+//		// 생성자 호출 확인, 멤버변수의 값을 함께 출력해본다.
+//		cout << "CTest::CTest() " << m_nData << endl;
+//	}
+//	CTest(int nParam) :m_nData(nParam) // 생성자(다중정의)
+//	{
+//		// 생성자 호출 확인, 멤버변수의 값을 함께 출력해본다.
+//		cout << "CTest::CTest(int nParam) " << m_nData << endl;
+//	}
+//	~CTest()	// 소멸자
+//	{
+//		// 소멸자 호출 확인, 멤버변수의 값을 함께 출력해본다.
+//		cout << "CTest::~CTest() " << m_nData << endl;
+//	}
+//};
+//
+//int main()
+//{
+//	cout << "main 함수 시작" << endl;
+//	CTest a;  // 객체 선언 > 인스턴스 생성 > 생성자 호출(디폴트 생성자)
+//	cout << "Before b" << endl;
+//	CTest b(10); // 객체 선언 > 인스턴스 생성 > 생성자 호출
+//	cout << "main 함수 종료" << endl;
+//	return 0;
+//}
+
+//명시적 디폴트 생성자
+//#include <iostream>
+//using namespace std;
+//
+//class CTest
+//{
+//	int m_nData;
+//public:
+//	CTest() = delete;	// 디폴트 생성자 명시적 삭제!
+//	CTest(int n) :m_nData(n) {} // 생성자 다중정의
+//	~CTest() { cout << m_nData << "지워\n"; }
+//	void Print();	// 멤버함수 선언
+//};
+//
+//void CTest::Print() { cout << m_nData << endl; }
+//
+//int main() {
+//	CTest c1(3), c2(5);
+//	static CTest c3(8);
+//	static CTest c4(9);
+//	c1.Print();
+//	c2.Print();
+//	c3.Print();
+//	c4.Print();
+//}
+
+//대입 연산자 
+// CMyData.h
+//
+//head
+//
+//#include <iostream>
+//#include <string.h>
+//#pragma warning(disable:4996) // visual studio 사용자만!!!
+//using namespace std;
+//
+//class CMyData {
+//public:
+//	CMyData(int age, const char* name);
+//	~CMyData();
+//	void print();
+//private:
+//	int _age;
+//	char* _name = nullptr;
+//};
+//
+////func
+//CMyData::CMyData(int age, const char* name) :_age(age)
+//{
+//	_name = new char[strlen(name) + 1];
+//	strcpy(_name, name);
+//}
+//
+//CMyData::~CMyData()
+//{
+//	delete[] _name;
+//	cout << "여기서 에러\n";
+//}
+//
+//void CMyData::print()
+//{
+//	cout << _age << ", " << _name << endl;
+//}
+//
+////main
+//int main()
+//{
+//	CMyData a(10, "홍길동");
+//	CMyData b(12, "김철수");
+//
+//	b = a;
+//
+//	a.print();
+//	b.print();
+//
+//	return 0;
+//}
+
